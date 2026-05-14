@@ -1,4 +1,24 @@
 
+/* =========================================================
+   MOBILE MENU FIX
+   ========================================================= */
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav');
+
+if (menuToggle && navMenu) {
+  menuToggle.addEventListener('click', () => {
+    document.body.classList.toggle('nav-open');
+  });
+
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.body.classList.remove('nav-open');
+    });
+  });
+}
+
+
+
 document.querySelectorAll('.faq-q').forEach(btn => {
   btn.addEventListener('click', () => {
     const currentItem = btn.parentElement;

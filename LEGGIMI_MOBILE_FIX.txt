@@ -1,0 +1,17 @@
+FIX MOBILE
+
+Ho sistemato:
+- menu hamburger che ora si apre/chiude
+- nav mobile a tendina
+- video-card che non va più sopra al titolo
+- hero mobile con testo, bottoni e video ordinati
+- CTA header adattata al telefono
+
+Sostituisci questi file:
+- styles.css
+- script.js
+- index.html se vuoi tenere la stessa struttura caricata
+
+Dopo upload sul sito:
+- svuota cache
+- ricarica da telefono
