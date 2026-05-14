@@ -1,0 +1,15 @@
+FIX HERO FOTO
+
+Da ora la hero prende SOLO questa immagine:
+
+images/hero-main.png
+
+Cosa devi fare:
+1. Crea/metti la cartella images vicino a index.html.
+2. Metti dentro la foto che vuoi usare e chiamala esattamente hero-main.png.
+3. Sostituisci styles.css e index.html con quelli dello ZIP.
+4. Ricarica il browser con Ctrl+F5 / Cmd+Shift+R.
+
+Perché prima non cambiava:
+nel CSS c’erano più regole .hero e alcune immagini vecchie vincevano o restavano in cache.
+Ora l’override finale usa images/hero-main.png?v=final con !important.

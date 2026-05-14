@@ -1,0 +1,10 @@
+HERO SISTEMATA
+
+Questo pacchetto usa la foto come sfondo della hero tramite:
+
+images/hero-bg.png
+
+Quindi nella tua cartella del sito deve esserci:
+images/hero-bg.png
+
+Se l'immagine non si vede ancora, il nome del file o della cartella non coincide.
