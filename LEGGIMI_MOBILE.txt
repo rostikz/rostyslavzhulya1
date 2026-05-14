@@ -1,0 +1,17 @@
+FIX MOBILE COMPLETO
+
+Ho sistemato:
+- hero mobile con sfondo visibile in alto
+- video sotto al testo, non sovrapposto
+- menu hamburger funzionante
+- header mobile più pulito
+- processo senza linee laterali brutte
+- CTA telefono con meno spazio vuoto
+
+La hero usa:
+images/me.png
+
+Dopo upload:
+1. sostituisci index.html, styles.css, script.js
+2. assicurati che images/me.png sia la foto giusta
+3. apri da telefono con ?v=10 oppure svuota cache

@@ -35,16 +35,16 @@ window.addEventListener('DOMContentLoaded', () => {
    ========================================================= */
 (function () {
   function initMobileMenu() {
-    const btn = document.querySelector(".menu-toggle");
+    const button = document.querySelector(".menu-toggle");
     const nav = document.querySelector(".nav");
 
-    if (!btn || !nav) return;
+    if (!button || !nav) return;
 
-    btn.setAttribute("type", "button");
+    button.setAttribute("type", "button");
 
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-      e.stopPropagation();
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
       document.body.classList.toggle("nav-open");
     });
 
@@ -54,9 +54,9 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    document.addEventListener("click", function (e) {
+    document.addEventListener("click", function (event) {
       if (!document.body.classList.contains("nav-open")) return;
-      if (nav.contains(e.target) || btn.contains(e.target)) return;
+      if (button.contains(event.target) || nav.contains(event.target)) return;
       document.body.classList.remove("nav-open");
     });
   }

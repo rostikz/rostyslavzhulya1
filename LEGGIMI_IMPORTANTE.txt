@@ -1,17 +1,19 @@
-BRO, QUI È GIÀ TUTTO DENTRO.
+BRO, QUESTA È LA VERSIONE DA SOSTITUIRE.
 
-Sostituisci questi file:
+Sostituisci:
 - index.html
 - styles.css
 - script.js
 
-La hero ora usa la foto come SFONDO:
-images/me.png
+La HERO adesso cerca SOLO:
+images/hero-main.png
 
-Non c'è più il box foto a destra nella hero.
-Il menu mobile funziona tramite script.js.
-Non serve mobile-fix.css separato.
+Quindi metti la tua immagine hero qui:
+images/hero-main.png
+
+La sezione "Chi sono" su mobile ora non taglia più la foto:
+usa object-fit: contain solo da telefono.
 
 Dopo upload:
-- svuota cache
-- su telefono apri in anonimo oppure aggiungi ?v=3 alla URL
+- apri il sito con ?v=20
+- oppure svuota cache del telefono/browser
