@@ -1,0 +1,14 @@
+BRO FIX VERO MOBILE
+
+Sostituisci questi file:
+- index.html
+- styles.css
+- mobile-fix.css
+- script.js
+
+La cosa importante è mobile-fix.css:
+viene caricato DOPO styles.css, quindi vince anche se nel CSS vecchio hai 50 hero.
+
+Dopo upload:
+- ricarica da telefono in anonimo oppure cancella cache
+- su iPhone/Safari: tieni premuto refresh se puoi o cambia URL aggiungendo ?v=2
