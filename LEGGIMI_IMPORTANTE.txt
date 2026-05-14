@@ -1,0 +1,17 @@
+BRO, QUI È GIÀ TUTTO DENTRO.
+
+Sostituisci questi file:
+- index.html
+- styles.css
+- script.js
+
+La hero ora usa la foto come SFONDO:
+images/me.png
+
+Non c'è più il box foto a destra nella hero.
+Il menu mobile funziona tramite script.js.
+Non serve mobile-fix.css separato.
+
+Dopo upload:
+- svuota cache
+- su telefono apri in anonimo oppure aggiungi ?v=3 alla URL
