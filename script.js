@@ -31,40 +31,80 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 /* =========================================================
-   MOBILE MENU DEFINITIVO
+   TESTIMONIANZE MOBILE — AUTO SCROLL + SWIPE
    ========================================================= */
 (function () {
-  function initMobileMenu() {
-    const button = document.querySelector(".menu-toggle");
-    const nav = document.querySelector(".nav");
+  function initMobileTestimonials() {
+    const carousel = document.querySelector(".testimonial-carousel");
+    const track = document.querySelector(".testimonial-track");
 
-    if (!button || !nav) return;
+    if (!carousel || !track) return;
 
-    button.setAttribute("type", "button");
+    let paused = false;
+    let resumeTimer = null;
+    let rafId = null;
+    let lastTime = null;
 
-    button.addEventListener("click", function (event) {
-      event.preventDefault();
-      event.stopPropagation();
-      document.body.classList.toggle("nav-open");
+    function isMobile() {
+      return window.matchMedia("(max-width: 1040px)").matches;
+    }
+
+    function pauseAuto() {
+      paused = true;
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(function () {
+        paused = false;
+      }, 2600);
+    }
+
+    function getHalfScrollWidth() {
+      return track.scrollWidth / 2;
+    }
+
+    function animate(time) {
+      if (!isMobile()) {
+        lastTime = time;
+        rafId = requestAnimationFrame(animate);
+        return;
+      }
+
+      if (lastTime === null) lastTime = time;
+      const delta = time - lastTime;
+      lastTime = time;
+
+      if (!paused) {
+        carousel.scrollLeft += delta * 0.025;
+
+        const half = getHalfScrollWidth();
+        if (half > 0 && carousel.scrollLeft >= half) {
+          carousel.scrollLeft = carousel.scrollLeft - half;
+        }
+      }
+
+      rafId = requestAnimationFrame(animate);
+    }
+
+    ["touchstart", "pointerdown", "mousedown", "wheel"].forEach(function (eventName) {
+      carousel.addEventListener(eventName, pauseAuto, { passive: true });
     });
 
-    nav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        document.body.classList.remove("nav-open");
-      });
-    });
+    carousel.addEventListener("scroll", function () {
+      const half = getHalfScrollWidth();
+      if (half > 0 && carousel.scrollLeft >= half) {
+        carousel.scrollLeft = carousel.scrollLeft - half;
+      }
+    }, { passive: true });
 
-    document.addEventListener("click", function (event) {
-      if (!document.body.classList.contains("nav-open")) return;
-      if (button.contains(event.target) || nav.contains(event.target)) return;
-      document.body.classList.remove("nav-open");
-    });
+    if (!carousel.dataset.mobileAutoScrollReady) {
+      carousel.dataset.mobileAutoScrollReady = "true";
+      rafId = requestAnimationFrame(animate);
+    }
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initMobileMenu);
+    document.addEventListener("DOMContentLoaded", initMobileTestimonials);
   } else {
-    initMobileMenu();
+    initMobileTestimonials();
   }
 })();
 

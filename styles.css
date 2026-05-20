@@ -4270,22 +4270,14 @@ body footer .footer-logo {
 
 
 /* =========================================================
-   REAL MOBILE PATCH — PROCESS LINES + TESTIMONIAL SWIPE
-   Mettere SEMPRE in fondo al file.
+   REAL MOBILE PATCH — PROCESS LINES + TESTIMONIAL AUTO/SWIPE
    ========================================================= */
 
-/* Tolgo le righe del percorso su tablet/mobile.
-   Uso selettore più specifico perché .step:not(:last-child)::after
-   nel CSS originale vinceva sopra .step::after. */
+/* Tolgo le righe del percorso su mobile/tablet */
 @media (max-width: 1040px) {
   body .process .steps {
     grid-template-columns: 1fr !important;
     gap: 42px !important;
-  }
-
-  body .process .step,
-  body .process .step:not(:last-child) {
-    text-align: center !important;
   }
 
   body .process .step::after,
@@ -4302,22 +4294,26 @@ body footer .footer-logo {
   }
 }
 
-/* Testimonianze mobile: swipe manuale col dito, niente animazione automatica.
-   Su desktop rimane l'animazione premium originale. */
+/* Testimonianze mobile: continuano a muoversi, ma sono anche trascinabili col dito */
 @media (max-width: 1040px) {
   body .testimonial-carousel {
     overflow-x: auto !important;
     overflow-y: hidden !important;
     -webkit-overflow-scrolling: touch !important;
-    scroll-snap-type: x mandatory !important;
+    scroll-snap-type: x proximity !important;
     mask-image: none !important;
     -webkit-mask-image: none !important;
     padding: 6px 0 18px !important;
     cursor: grab !important;
+    scrollbar-width: none !important;
   }
 
   body .testimonial-carousel:active {
     cursor: grabbing !important;
+  }
+
+  body .testimonial-carousel::-webkit-scrollbar {
+    display: none !important;
   }
 
   body .testimonial-track {
@@ -4336,14 +4332,6 @@ body footer .footer-logo {
     width: min(82vw, 340px) !important;
     flex: 0 0 min(82vw, 340px) !important;
     scroll-snap-align: center !important;
-  }
-
-  body .testimonial-carousel::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  body .testimonial-carousel {
-    scrollbar-width: none !important;
   }
 }
 
