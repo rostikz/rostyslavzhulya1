@@ -4267,3 +4267,83 @@ body footer .footer-logo {
   }
 
 }
+
+
+/* =========================================================
+   REAL MOBILE PATCH — PROCESS LINES + TESTIMONIAL SWIPE
+   Mettere SEMPRE in fondo al file.
+   ========================================================= */
+
+/* Tolgo le righe del percorso su tablet/mobile.
+   Uso selettore più specifico perché .step:not(:last-child)::after
+   nel CSS originale vinceva sopra .step::after. */
+@media (max-width: 1040px) {
+  body .process .steps {
+    grid-template-columns: 1fr !important;
+    gap: 42px !important;
+  }
+
+  body .process .step,
+  body .process .step:not(:last-child) {
+    text-align: center !important;
+  }
+
+  body .process .step::after,
+  body .process .step:not(:last-child)::after,
+  body .steps .step::after,
+  body .steps .step:not(:last-child)::after {
+    content: none !important;
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: none !important;
+  }
+}
+
+/* Testimonianze mobile: swipe manuale col dito, niente animazione automatica.
+   Su desktop rimane l'animazione premium originale. */
+@media (max-width: 1040px) {
+  body .testimonial-carousel {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x mandatory !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    padding: 6px 0 18px !important;
+    cursor: grab !important;
+  }
+
+  body .testimonial-carousel:active {
+    cursor: grabbing !important;
+  }
+
+  body .testimonial-track {
+    animation: none !important;
+    transform: none !important;
+    width: max-content !important;
+    display: flex !important;
+    gap: 18px !important;
+  }
+
+  body .testimonial-carousel:hover .testimonial-track {
+    animation: none !important;
+  }
+
+  body .quote {
+    width: min(82vw, 340px) !important;
+    flex: 0 0 min(82vw, 340px) !important;
+    scroll-snap-align: center !important;
+  }
+
+  body .testimonial-carousel::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body .testimonial-carousel {
+    scrollbar-width: none !important;
+  }
+}
+
