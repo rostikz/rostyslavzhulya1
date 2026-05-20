@@ -1,14 +1,13 @@
-BRO FIX VERO MOBILE
+Versione pulita finale.
 
-Sostituisci questi file:
+Sostituisci:
 - index.html
 - styles.css
-- mobile-fix.css
 - script.js
 
-La cosa importante è mobile-fix.css:
-viene caricato DOPO styles.css, quindi vince anche se nel CSS vecchio hai 50 hero.
+Immagine hero:
+- mettila in images/hero-main.png
 
 Dopo upload:
-- ricarica da telefono in anonimo oppure cancella cache
-- su iPhone/Safari: tieni premuto refresh se puoi o cambia URL aggiungendo ?v=2
+- apri rostyslavzhulya.it?v=0520
+- su iPhone, apri anche in scheda privata se non cambia subito.

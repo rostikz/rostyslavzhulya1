@@ -168,8 +168,8 @@ img {
   color: #ffffff;
 }
 
-/* LOGO IMMAGINE: usa <img src="images/me.png" class="logo-img"> */
-.me-img {
+/* LOGO IMMAGINE: usa <img src="images/logo.png" class="logo-img"> */
+.logo-img {
   width: 78px;
   height: 78px;
   object-fit: contain;
@@ -300,38 +300,64 @@ img {
 /* ------------------------------
    5. HERO
 ------------------------------ */
-.hero {
-  position: relative;
-  min-height: 720px;
-  display: flex;
-  align-items: center;
-  margin-top: -100px;
-  padding-top: 100px;
-  border-bottom: 1px solid rgba(214, 161, 90, 0.10);
-  overflow: hidden;
+.hero{
+  position:relative;
+  min-height:820px;
+  display:flex;
+  align-items:center;
+
+  margin-top:-100px;
+  padding-top:100px;
+
+  overflow:hidden;
+
+  border-bottom:1px solid rgba(214,161,90,.10);
+
   background:
-    linear-gradient(90deg, rgba(5, 6, 7, 0.98) 0%, rgba(5, 6, 7, 0.92) 34%, rgba(5, 6, 7, 0.58) 58%, rgba(5, 6, 7, 0.82) 100%),
-    url("https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=2200&q=90") center/cover;
+    linear-gradient(
+      90deg,
+      rgba(5,6,7,.96) 0%,
+      rgba(5,6,7,.90) 26%,
+      rgba(5,6,7,.52) 54%,
+      rgba(5,6,7,.82) 100%
+    ),
+    url("images/me.png");
+
+  background-size:cover;
+  background-position:center top;
+  background-repeat:no-repeat;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
   background:
-    linear-gradient(180deg, transparent 60%, #07090b),
-    radial-gradient(circle at 70% 18%, rgba(214, 161, 90, 0.18), transparent 24%);
-  z-index: 0;
+    radial-gradient(
+      circle at 68% 18%,
+      rgba(214,161,90,.16),
+      transparent 24%
+    ),
+    linear-gradient(
+      180deg,
+      transparent 58%,
+      #050607 100%
+    );
+
+  z-index:0;
 }
 
-.hero-grid {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 0.82fr 1.18fr;
-  gap: 10px;
-  align-items: center;
-  padding: 70px 0 30px;
+.hero-grid{
+  position:relative;
+  z-index:2;
+
+  display:grid;
+  grid-template-columns:0.9fr 1.1fr;
+
+  align-items:center;
+
+  min-height:820px;
 }
 
 .eyebrow {
@@ -3702,221 +3728,371 @@ footer {
 
 
 /* =========================================================
-   MOBILE PERFECTION FIX
-   Titolo aree, stats centrate, FAQ allineata
+   HERO BACKGROUND FIX DEFINITIVO
    ========================================================= */
 
+.hero-visual{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.main-person{
+  display:none !important;
+}
+
+.video-card{
+  position:absolute;
+
+  right:8%;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:300px;
+
+  padding:42px 30px;
+
+  border:1px solid rgba(214,161,90,.24);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(14,17,21,.72),
+      rgba(6,7,8,.88)
+    );
+
+  backdrop-filter:blur(20px);
+
+  border-radius:18px;
+
+  text-align:center;
+
+  box-shadow:
+    0 40px 100px rgba(0,0,0,.55);
+}
+
+@media (max-width: 980px){
+
+  .hero{
+    background-position:72% top;
+    min-height:auto;
+    padding-bottom:120px;
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr;
+    min-height:auto;
+    padding:80px 0;
+  }
+
+  .video-card{
+    position:relative;
+    right:auto;
+    top:auto;
+
+    transform:none;
+
+    width:100%;
+    max-width:340px;
+
+    margin-top:40px;
+  }
+}
+
+
+/* =========================================================
+   HEADER FIX DEFINITIVO
+   Corregge logo gigante, allineamento navbar e mobile
+   ========================================================= */
+
+/* Header desktop */
+body .navbar {
+  position: sticky !important;
+  top: 14px !important;
+  z-index: 9999 !important;
+  width: min(1500px, calc(100% - 44px)) !important;
+  margin: 0 auto !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(214, 161, 90, 0.24) !important;
+  background: rgba(5, 6, 7, 0.82) !important;
+  backdrop-filter: blur(22px) !important;
+  box-shadow: 0 18px 60px rgba(0,0,0,.42), inset 0 0 0 1px rgba(255,255,255,.02) !important;
+}
+
+/* Spegne qualsiasi immagine/effetto gigante dentro header */
+body .navbar::after,
+body .navbar::before {
+  pointer-events: none !important;
+}
+
+body .navbar .nav-inner {
+  height: 76px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 24px !important;
+  padding: 0 28px !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Brand pulito */
+body .navbar .brand {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  flex: 0 0 auto !important;
+  min-width: 220px !important;
+  max-width: 260px !important;
+  padding-right: 26px !important;
+  position: relative !important;
+  overflow: visible !important;
+  text-transform: uppercase !important;
+  font-family: Montserrat, sans-serif !important;
+  font-weight: 900 !important;
+  letter-spacing: 1.5px !important;
+  line-height: 1.05 !important;
+}
+
+/* Elimina glow/immagini giganti che uscivano dal logo */
+body .navbar .brand::before {
+  display: none !important;
+}
+
+body .navbar .brand::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  right: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 1px !important;
+  height: 44px !important;
+  background: rgba(214,161,90,.22) !important;
+}
+
+/* Logo sempre piccolo */
+body .navbar .logo-img,
+body .navbar .brand img,
+body .navbar img.logo-img {
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px !important;
+  max-width: 46px !important;
+  min-height: 46px !important;
+  max-height: 46px !important;
+  object-fit: contain !important;
+  display: block !important;
+  transform: none !important;
+  filter: drop-shadow(0 0 14px rgba(214,161,90,.22)) !important;
+}
+
+body .navbar .brand span {
+  display: block !important;
+  font-size: 14px !important;
+  line-height: 1.05 !important;
+  letter-spacing: 1.4px !important;
+  color: #fff !important;
+  white-space: nowrap !important;
+}
+
+/* Menu desktop */
+body .navbar .nav {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(24px, 3vw, 44px) !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  font-family: Montserrat, sans-serif !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: .5px !important;
+  font-size: 12px !important;
+  color: #f3f3f3 !important;
+}
+
+body .navbar .nav a {
+  padding: 8px 0 !important;
+  white-space: nowrap !important;
+}
+
+/* Bottone desktop */
+body .navbar > .nav-inner > .btn {
+  flex: 0 0 auto !important;
+  min-width: 170px !important;
+  height: 48px !important;
+  padding: 0 22px !important;
+  border-radius: 6px !important;
+  font-size: 11px !important;
+}
+
+/* Hamburger nascosto su desktop */
+body .navbar .menu-toggle {
+  display: none !important;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  body .navbar .nav {
+    gap: 22px !important;
+    font-size: 11px !important;
+  }
+
+  body .navbar .brand {
+    min-width: 200px !important;
+  }
+
+  body .navbar > .nav-inner > .btn {
+    min-width: 150px !important;
+  }
+}
+
+/* Mobile */
 @media (max-width: 980px) {
-
-  /* Titolo "Le aree in cui ti formiamo" più pulito */
-  body .areas-section {
-    padding-top: 78px !important;
+  body .navbar {
+    top: 10px !important;
+    width: calc(100% - 20px) !important;
+    overflow: visible !important;
+    border-radius: 18px !important;
   }
 
-  body .areas-section .center {
-    text-align: center !important;
-    margin-bottom: 34px !important;
+  body .navbar .nav-inner {
+    height: 74px !important;
+    padding: 0 12px !important;
+    gap: 10px !important;
   }
 
-  body .areas-title {
-    width: 100% !important;
-    max-width: 100% !important;
-
-    display: grid !important;
-    grid-template-columns: 42px minmax(0, 1fr) 42px !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 14px !important;
-
-    font-size: clamp(28px, 8vw, 38px) !important;
-    line-height: 1.08 !important;
-    letter-spacing: -1.1px !important;
-    text-align: center !important;
-    margin: 0 auto !important;
+  body .navbar .brand {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    padding-right: 0 !important;
+    gap: 10px !important;
   }
 
-  body .areas-title::before,
-  body .areas-title::after {
-    content: "" !important;
-    width: 100% !important;
-    height: 1px !important;
-    display: block !important;
-    opacity: 0.85 !important;
+  body .navbar .brand::after,
+  body .navbar .brand::before {
+    display: none !important;
   }
 
-  body .areas-title::before {
-    background: linear-gradient(90deg, transparent, var(--gold2)) !important;
+  body .navbar .logo-img,
+  body .navbar .brand img,
+  body .navbar img.logo-img {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    max-width: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
   }
 
-  body .areas-title::after {
-    background: linear-gradient(90deg, var(--gold2), transparent) !important;
+  body .navbar .brand span {
+    font-size: 11px !important;
+    line-height: 1.05 !important;
+    letter-spacing: 1.1px !important;
   }
 
-  body .areas-title .gold {
-    display: inline !important;
-    white-space: nowrap !important;
+  body .navbar > .nav-inner > .btn {
+    min-width: auto !important;
+    height: 44px !important;
+    padding: 0 14px !important;
+    font-size: 10px !important;
   }
 
-  /* Stats mobile tutte allineate uguali */
-  body .stats-grid {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-  }
-
-  body .stat {
-    width: 100% !important;
-    min-height: 150px !important;
-    padding: 34px 22px !important;
-
-    display: grid !important;
-    grid-template-columns: 54px minmax(0, 260px) !important;
-    align-items: center !important;
-    justify-content: center !important;
-    column-gap: 22px !important;
-
-    text-align: left !important;
-
-    border-right: 0 !important;
-    border-bottom: 1px solid rgba(214, 161, 90, 0.20) !important;
-  }
-
-  body .stat:last-child {
-    border-bottom: 0 !important;
-  }
-
-  body .stat i {
-    width: 54px !important;
-    height: 54px !important;
+  body .navbar .menu-toggle {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    justify-self: center !important;
+    width: 42px !important;
+    height: 42px !important;
+    flex: 0 0 42px !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: var(--gold2) !important;
+    font-size: 32px !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    z-index: 10001 !important;
   }
 
-  body .stat i svg {
-    width: 34px !important;
-    height: 34px !important;
+  /* menu dropdown */
+  body .navbar .nav {
+    position: absolute !important;
+    top: calc(100% + 10px) !important;
+    left: 0 !important;
+    right: 0 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+
+    padding: 12px !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(214,161,90,.28) !important;
+    background: rgba(5,6,7,.98) !important;
+    backdrop-filter: blur(18px) !important;
+    box-shadow: 0 24px 80px rgba(0,0,0,.70) !important;
+
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(-8px) !important;
+    transition: .22s ease !important;
+    z-index: 10000 !important;
   }
 
-  body .stat > div {
-    width: 100% !important;
-    max-width: 260px !important;
+  body.nav-open .navbar .nav {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+  }
+
+  body .navbar .nav a {
     display: block !important;
-    text-align: left !important;
+    padding: 15px 12px !important;
+    font-size: 13px !important;
+    border-bottom: 1px solid rgba(214,161,90,.12) !important;
   }
 
-  body .stat strong {
-    display: block !important;
-    font-size: clamp(42px, 11vw, 58px) !important;
-    line-height: 0.95 !important;
-    text-align: left !important;
-    white-space: nowrap !important;
+  body .navbar .nav a:last-child {
+    border-bottom: 0 !important;
+  }
+}
+
+@media (max-width: 430px) {
+  body .navbar .nav-inner {
+    padding: 0 10px !important;
+    gap: 8px !important;
   }
 
-  body .stat p {
-    display: block !important;
-    margin-top: 8px !important;
-    font-size: 14px !important;
-    line-height: 1.15 !important;
-    text-align: left !important;
-    white-space: normal !important;
+  body .navbar .logo-img,
+  body .navbar .brand img,
+  body .navbar img.logo-img {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
   }
 
-  /* FAQ: domande tutte perfettamente allineate */
-  body .faq {
-    padding: 30px 22px !important;
+  body .navbar .brand span {
+    font-size: 10px !important;
+    letter-spacing: .9px !important;
   }
 
-  body .faq-item {
-    border-radius: 14px !important;
+  body .navbar > .nav-inner > .btn {
+    height: 40px !important;
+    padding: 0 11px !important;
+    font-size: 9px !important;
   }
 
-  body .faq-q {
-    min-height: 78px !important;
-    padding: 18px 18px !important;
-
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr) 44px !important;
-    align-items: center !important;
-    gap: 14px !important;
-
-    text-align: left !important;
-    line-height: 1.22 !important;
-    font-size: clamp(15px, 4.2vw, 18px) !important;
-  }
-
-  body .faq-q span:first-child {
-    min-width: 0 !important;
-    display: block !important;
-    text-align: left !important;
-  }
-
-  body .faq-q span:last-child {
+  body .navbar .menu-toggle {
     width: 38px !important;
     height: 38px !important;
-    display: grid !important;
-    place-items: center !important;
-    justify-self: end !important;
-    flex: 0 0 38px !important;
-  }
-
-  body .faq-a p {
-    text-align: left !important;
-  }
-}
-
-@media (max-width: 520px) {
-  body .areas-title {
-    grid-template-columns: 34px minmax(0, 1fr) 34px !important;
-    gap: 10px !important;
-    font-size: 30px !important;
-  }
-
-  body .stat {
-    grid-template-columns: 48px minmax(0, 245px) !important;
-    column-gap: 18px !important;
-    min-height: 142px !important;
-  }
-
-  body .stat i {
-    width: 48px !important;
-    height: 48px !important;
-  }
-
-  body .stat strong {
-    font-size: 46px !important;
-  }
-
-  body .stat p {
-    font-size: 13px !important;
-  }
-
-  body .faq-q {
-    min-height: 76px !important;
-    padding: 17px 16px !important;
-    grid-template-columns: minmax(0, 1fr) 40px !important;
-    gap: 12px !important;
-  }
-
-  body .faq-q span:last-child {
-    width: 36px !important;
-    height: 36px !important;
-  }
-}
-
-@media (max-width: 390px) {
-  body .areas-title {
-    font-size: 27px !important;
-    grid-template-columns: 28px minmax(0, 1fr) 28px !important;
-  }
-
-  body .stat {
-    grid-template-columns: 44px minmax(0, 220px) !important;
-    column-gap: 14px !important;
-  }
-
-  body .stat strong {
-    font-size: 42px !important;
+    flex-basis: 38px !important;
+    font-size: 29px !important;
   }
 }
 

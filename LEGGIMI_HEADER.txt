@@ -1,0 +1,13 @@
+Fix header:
+- logo bloccato piccolo
+- niente più logo gigante che esce dalla navbar
+- menu desktop riallineato
+- mobile menu mantenuto funzionante
+- cache bust su styles.css e script.js
+
+Sostituisci:
+- index.html
+- styles.css
+- script.js
+
+Poi apri il sito con ?v=header-fix
