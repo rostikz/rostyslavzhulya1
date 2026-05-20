@@ -4270,10 +4270,14 @@ body footer .footer-logo {
 
 
 /* =========================================================
-   MOBILE CTA + TESTIMONIALS FINAL FIX
+   FINAL CTA MOBILE CLEAN FIX
+   Ultimo override pulito per mobile:
+   - CTA telefono più compatta
+   - feature non si sovrappongono
+   - testimonial continuano a muoversi e si possono swipare
+   - righe percorso tolte
    ========================================================= */
 
-/* Linee laterali percorso rimosse davvero */
 @media (max-width: 1040px) {
   body .process .step::after,
   body .process .step:not(:last-child)::after,
@@ -4289,7 +4293,6 @@ body footer .footer-logo {
   }
 }
 
-/* CTA mobile rifatta: niente spazio infinito, telefono come elemento laterale/basso */
 @media (max-width: 980px) {
   body .bottom {
     grid-template-columns: 1fr !important;
@@ -4297,14 +4300,12 @@ body footer .footer-logo {
   }
 
   body .cta {
-    min-height: auto !important;
     height: auto !important;
+    min-height: auto !important;
     max-height: none !important;
-
     padding: 34px 24px 230px !important;
     border-radius: 18px !important;
     overflow: hidden !important;
-
     background:
       radial-gradient(circle at 82% 84%, rgba(214,161,90,.32), transparent 34%),
       radial-gradient(circle at 100% 100%, rgba(214,161,90,.18), transparent 36%),
@@ -4342,7 +4343,6 @@ body footer .footer-logo {
     margin-bottom: 22px !important;
   }
 
-  /* Features più belle: card verticali compatte */
   body .cta-features {
     display: grid !important;
     grid-template-columns: 1fr !important;
@@ -4352,33 +4352,40 @@ body footer .footer-logo {
   }
 
   body .cta-feature {
-    display: grid !important;
-    grid-template-columns: 34px 1fr !important;
+    display: flex !important;
     align-items: center !important;
-    column-gap: 12px !important;
-
-    padding: 13px 14px !important;
+    gap: 14px !important;
+    min-width: 0 !important;
+    padding: 16px 18px !important;
     border: 1px solid rgba(214,161,90,.16) !important;
-    border-radius: 12px !important;
+    border-radius: 14px !important;
     background: rgba(255,255,255,.025) !important;
   }
 
   body .cta-feature svg {
     width: 24px !important;
     height: 24px !important;
+    min-width: 24px !important;
+    flex: 0 0 24px !important;
     margin: 0 !important;
-    grid-row: 1 / span 2 !important;
+    display: block !important;
   }
 
   body .cta-feature strong {
-    font-size: 11px !important;
-    line-height: 1.15 !important;
+    display: block !important;
+    font-size: 13px !important;
+    line-height: 1.1 !important;
+    margin: 0 0 3px !important;
+    white-space: normal !important;
   }
 
   body .cta-feature small {
-    font-size: 12px !important;
-    line-height: 1.25 !important;
-    margin-top: 3px !important;
+    display: block !important;
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
+    opacity: .82 !important;
+    white-space: normal !important;
   }
 
   body .cta .btn {
@@ -4412,26 +4419,7 @@ body footer .footer-logo {
       drop-shadow(0 34px 70px rgba(0,0,0,.75))
       drop-shadow(0 0 30px rgba(214,161,90,.16)) !important;
   }
-}
 
-@media (max-width: 420px) {
-  body .cta {
-    padding: 30px 20px 220px !important;
-  }
-
-  body .cta h2 {
-    font-size: 42px !important;
-  }
-
-  body .cta-visual {
-    width: 235px !important;
-    right: -42px !important;
-    bottom: -36px !important;
-  }
-}
-
-/* Testimonianze mobile: auto-scroll + swipe */
-@media (max-width: 1040px) {
   body .testimonial-carousel {
     overflow-x: auto !important;
     overflow-y: hidden !important;
@@ -4454,17 +4442,28 @@ body footer .footer-logo {
     width: max-content !important;
     display: flex !important;
     gap: 18px !important;
-    will-change: auto !important;
-  }
-
-  body .testimonial-carousel:hover .testimonial-track {
-    animation: none !important;
   }
 
   body .quote {
     width: min(82vw, 340px) !important;
     flex: 0 0 min(82vw, 340px) !important;
     scroll-snap-align: center !important;
+  }
+}
+
+@media (max-width: 420px) {
+  body .cta {
+    padding: 30px 20px 220px !important;
+  }
+
+  body .cta h2 {
+    font-size: 42px !important;
+  }
+
+  body .cta-visual {
+    width: 235px !important;
+    right: -42px !important;
+    bottom: -36px !important;
   }
 }
 

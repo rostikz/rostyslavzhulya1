@@ -42,7 +42,6 @@ window.addEventListener('DOMContentLoaded', () => {
     if (carousel.dataset.autoSwipeInit === "true") return;
     carousel.dataset.autoSwipeInit = "true";
 
-    /* Duplica le card una volta, così lo scroll infinito non si blocca */
     const originalQuotes = Array.from(track.children);
     if (originalQuotes.length && !track.dataset.clonedForMobile) {
       originalQuotes.forEach(function (node) {
@@ -77,7 +76,7 @@ window.addEventListener('DOMContentLoaded', () => {
       lastTime = time;
 
       if (isMobile() && !paused) {
-        carousel.scrollLeft += delta * 0.045; // velocità mobile
+        carousel.scrollLeft += delta * 0.045;
 
         const half = halfWidth();
         if (half > 20 && carousel.scrollLeft >= half) {
