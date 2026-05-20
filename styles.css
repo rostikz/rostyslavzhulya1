@@ -4217,3 +4217,53 @@ body footer .footer-logo {
   }
 }
 
+/* =========================================
+   FIX LINEE PROCESSO MOBILE
+========================================= */
+@media (max-width: 980px){
+
+  .steps{
+    grid-template-columns:1fr !important;
+    gap:40px !important;
+  }
+
+  .step{
+    text-align:center !important;
+  }
+
+  .step::after{
+    display:none !important;
+  }
+
+}
+
+/* =========================================
+   TESTIMONIANZE SWIPE MOBILE
+========================================= */
+@media (max-width: 980px){
+
+  .testimonial-carousel{
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+
+    -webkit-overflow-scrolling:touch !important;
+    scroll-snap-type:x mandatory !important;
+
+    mask-image:none !important;
+    padding-bottom:10px !important;
+  }
+
+  .testimonial-track{
+    animation:none !important;
+    width:max-content !important;
+  }
+
+  .quote{
+    scroll-snap-align:center !important;
+  }
+
+  .testimonial-carousel::-webkit-scrollbar{
+    display:none;
+  }
+
+}
