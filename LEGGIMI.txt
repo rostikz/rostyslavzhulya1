@@ -1,13 +1,17 @@
-Versione pulita finale.
+BRO, QUESTA È QUELLA GIUSTA.
 
 Sostituisci:
 - index.html
 - styles.css
 - script.js
 
-Immagine hero:
-- mettila in images/hero-main.png
+Nomi immagini:
+- Hero sfondo: images/hero-main.png
+- Chi sono: images/me2.png
+- Logo: images/logo.png
 
-Dopo upload:
-- apri rostyslavzhulya.it?v=0520
-- su iPhone, apri anche in scheda privata se non cambia subito.
+IMPORTANTE:
+Sul telefono apri:
+rostyslavzhulya.it/?v=999
+
+Se non cambia ancora, cancella cronologia/siti web da Safari oppure apri in modalità privata.
