@@ -1,0 +1,12 @@
+Fix mobile aggiunto direttamente in styles.css.
+
+Sistemato:
+- Titolo "Le aree in cui ti formiamo" più centrato e ordinato
+- Stats mobile tutte allineate con stessa griglia
+- FAQ mobile con ultima domanda allineata come le altre
+
+Sostituisci:
+- styles.css
+- script.js se vuoi tenere il menu già corretto
+
+Poi svuota cache o apri il sito con ?v=30
