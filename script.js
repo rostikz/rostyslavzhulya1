@@ -34,16 +34,26 @@ window.addEventListener('DOMContentLoaded', () => {
    TESTIMONIANZE MOBILE — AUTO SCROLL + SWIPE
    ========================================================= */
 (function () {
-  function initMobileTestimonials() {
+  function initMobileTestimonialsAutoSwipe() {
     const carousel = document.querySelector(".testimonial-carousel");
     const track = document.querySelector(".testimonial-track");
 
     if (!carousel || !track) return;
+    if (carousel.dataset.autoSwipeInit === "true") return;
+    carousel.dataset.autoSwipeInit = "true";
+
+    /* Duplica le card una volta, così lo scroll infinito non si blocca */
+    const originalQuotes = Array.from(track.children);
+    if (originalQuotes.length && !track.dataset.clonedForMobile) {
+      originalQuotes.forEach(function (node) {
+        track.appendChild(node.cloneNode(true));
+      });
+      track.dataset.clonedForMobile = "true";
+    }
 
     let paused = false;
-    let resumeTimer = null;
-    let rafId = null;
     let lastTime = null;
+    let resumeTimer = null;
 
     function isMobile() {
       return window.matchMedia("(max-width: 1040px)").matches;
@@ -54,34 +64,28 @@ window.addEventListener('DOMContentLoaded', () => {
       clearTimeout(resumeTimer);
       resumeTimer = setTimeout(function () {
         paused = false;
-      }, 2600);
+      }, 2200);
     }
 
-    function getHalfScrollWidth() {
-      return track.scrollWidth / 2;
+    function halfWidth() {
+      return Math.max(0, track.scrollWidth / 2);
     }
 
-    function animate(time) {
-      if (!isMobile()) {
-        lastTime = time;
-        rafId = requestAnimationFrame(animate);
-        return;
-      }
-
+    function tick(time) {
       if (lastTime === null) lastTime = time;
       const delta = time - lastTime;
       lastTime = time;
 
-      if (!paused) {
-        carousel.scrollLeft += delta * 0.025;
+      if (isMobile() && !paused) {
+        carousel.scrollLeft += delta * 0.045; // velocità mobile
 
-        const half = getHalfScrollWidth();
-        if (half > 0 && carousel.scrollLeft >= half) {
-          carousel.scrollLeft = carousel.scrollLeft - half;
+        const half = halfWidth();
+        if (half > 20 && carousel.scrollLeft >= half) {
+          carousel.scrollLeft -= half;
         }
       }
 
-      rafId = requestAnimationFrame(animate);
+      requestAnimationFrame(tick);
     }
 
     ["touchstart", "pointerdown", "mousedown", "wheel"].forEach(function (eventName) {
@@ -89,22 +93,20 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     carousel.addEventListener("scroll", function () {
-      const half = getHalfScrollWidth();
-      if (half > 0 && carousel.scrollLeft >= half) {
-        carousel.scrollLeft = carousel.scrollLeft - half;
+      if (!isMobile()) return;
+      const half = halfWidth();
+      if (half > 20 && carousel.scrollLeft >= half) {
+        carousel.scrollLeft -= half;
       }
     }, { passive: true });
 
-    if (!carousel.dataset.mobileAutoScrollReady) {
-      carousel.dataset.mobileAutoScrollReady = "true";
-      rafId = requestAnimationFrame(animate);
-    }
+    requestAnimationFrame(tick);
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initMobileTestimonials);
+    document.addEventListener("DOMContentLoaded", initMobileTestimonialsAutoSwipe);
   } else {
-    initMobileTestimonials();
+    initMobileTestimonialsAutoSwipe();
   }
 })();
 

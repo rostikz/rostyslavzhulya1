@@ -4270,16 +4270,11 @@ body footer .footer-logo {
 
 
 /* =========================================================
-   REAL MOBILE PATCH — PROCESS LINES + TESTIMONIAL AUTO/SWIPE
+   MOBILE CTA + TESTIMONIALS FINAL FIX
    ========================================================= */
 
-/* Tolgo le righe del percorso su mobile/tablet */
+/* Linee laterali percorso rimosse davvero */
 @media (max-width: 1040px) {
-  body .process .steps {
-    grid-template-columns: 1fr !important;
-    gap: 42px !important;
-  }
-
   body .process .step::after,
   body .process .step:not(:last-child)::after,
   body .steps .step::after,
@@ -4294,7 +4289,148 @@ body footer .footer-logo {
   }
 }
 
-/* Testimonianze mobile: continuano a muoversi, ma sono anche trascinabili col dito */
+/* CTA mobile rifatta: niente spazio infinito, telefono come elemento laterale/basso */
+@media (max-width: 980px) {
+  body .bottom {
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+  }
+
+  body .cta {
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+
+    padding: 34px 24px 230px !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+
+    background:
+      radial-gradient(circle at 82% 84%, rgba(214,161,90,.32), transparent 34%),
+      radial-gradient(circle at 100% 100%, rgba(214,161,90,.18), transparent 36%),
+      linear-gradient(145deg, #07090b 0%, #050607 58%, #080706 100%) !important;
+  }
+
+  body .cta-content {
+    max-width: 100% !important;
+    position: relative !important;
+    z-index: 4 !important;
+  }
+
+  body .cta-kicker {
+    font-size: 13px !important;
+    letter-spacing: 6px !important;
+    margin-bottom: 10px !important;
+  }
+
+  body .cta h2 {
+    font-size: clamp(42px, 12vw, 58px) !important;
+    line-height: .94 !important;
+    letter-spacing: -2px !important;
+    margin-bottom: 18px !important;
+  }
+
+  body .cta-line {
+    width: 88px !important;
+    margin: 20px 0 24px !important;
+  }
+
+  body .cta .lead {
+    font-size: 16.5px !important;
+    line-height: 1.75 !important;
+    max-width: 100% !important;
+    margin-bottom: 22px !important;
+  }
+
+  /* Features più belle: card verticali compatte */
+  body .cta-features {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    max-width: 100% !important;
+    margin: 22px 0 22px !important;
+  }
+
+  body .cta-feature {
+    display: grid !important;
+    grid-template-columns: 34px 1fr !important;
+    align-items: center !important;
+    column-gap: 12px !important;
+
+    padding: 13px 14px !important;
+    border: 1px solid rgba(214,161,90,.16) !important;
+    border-radius: 12px !important;
+    background: rgba(255,255,255,.025) !important;
+  }
+
+  body .cta-feature svg {
+    width: 24px !important;
+    height: 24px !important;
+    margin: 0 !important;
+    grid-row: 1 / span 2 !important;
+  }
+
+  body .cta-feature strong {
+    font-size: 11px !important;
+    line-height: 1.15 !important;
+  }
+
+  body .cta-feature small {
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+    margin-top: 3px !important;
+  }
+
+  body .cta .btn {
+    width: 100% !important;
+    min-height: 56px !important;
+    margin-top: 4px !important;
+  }
+
+  body .limited {
+    margin-top: 18px !important;
+    font-size: 12px !important;
+  }
+
+  body .cta-visual {
+    position: absolute !important;
+    right: -34px !important;
+    bottom: -42px !important;
+    width: 255px !important;
+    height: auto !important;
+    transform: rotate(-8deg) !important;
+    opacity: .98 !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+  }
+
+  body .cta-visual img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    filter:
+      drop-shadow(0 34px 70px rgba(0,0,0,.75))
+      drop-shadow(0 0 30px rgba(214,161,90,.16)) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  body .cta {
+    padding: 30px 20px 220px !important;
+  }
+
+  body .cta h2 {
+    font-size: 42px !important;
+  }
+
+  body .cta-visual {
+    width: 235px !important;
+    right: -42px !important;
+    bottom: -36px !important;
+  }
+}
+
+/* Testimonianze mobile: auto-scroll + swipe */
 @media (max-width: 1040px) {
   body .testimonial-carousel {
     overflow-x: auto !important;
@@ -4304,12 +4440,8 @@ body footer .footer-logo {
     mask-image: none !important;
     -webkit-mask-image: none !important;
     padding: 6px 0 18px !important;
-    cursor: grab !important;
     scrollbar-width: none !important;
-  }
-
-  body .testimonial-carousel:active {
-    cursor: grabbing !important;
+    cursor: grab !important;
   }
 
   body .testimonial-carousel::-webkit-scrollbar {
@@ -4322,6 +4454,7 @@ body footer .footer-logo {
     width: max-content !important;
     display: flex !important;
     gap: 18px !important;
+    will-change: auto !important;
   }
 
   body .testimonial-carousel:hover .testimonial-track {
