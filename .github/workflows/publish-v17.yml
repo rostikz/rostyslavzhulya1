@@ -1,0 +1,52 @@
+name: Publish portfolio bundle
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'rostyslav-portfolio-v17-online-ready.zip'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract portfolio
+        shell: bash
+        run: |
+          set -euo pipefail
+          ZIP='rostyslav-portfolio-v17-online-ready.zip'
+          if [ ! -f "$ZIP" ]; then
+            echo 'Bundle already processed; nothing to do.'
+            exit 0
+          fi
+          rm -rf .portfolio-v17-tmp
+          mkdir .portfolio-v17-tmp
+          unzip -q -o "$ZIP" -d .portfolio-v17-tmp
+          SRC='.portfolio-v17-tmp/rostyslav-portfolio-v17-online'
+          test -f "$SRC/index.html"
+          test -d "$SRC/assets"
+          rm -rf assets
+          cp "$SRC/index.html" index.html
+          cp -R "$SRC/assets" assets
+          cp "$SRC/portfolio-v17.html" portfolio-v17.html
+          rm -rf .portfolio-v17-tmp
+          rm -f "$ZIP"
+
+      - name: Commit published site
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A index.html assets portfolio-v17.html rostyslav-portfolio-v17-online-ready.zip || true
+          if git diff --cached --quiet; then
+            echo 'No changes to publish.'
+            exit 0
+          fi
+          git commit -m 'Publish UGC portfolio V17'
+          git push
